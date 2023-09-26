@@ -606,6 +606,16 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mx-10{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
 .-mt-20{
   margin-top: -5rem;
 }
@@ -624,6 +634,13 @@ video {
 
 .mb-8{
   margin-bottom: 2rem;
+}
+
+.line-clamp-3{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .flex{
@@ -690,12 +707,32 @@ video {
   width: 8.333333%;
 }
 
+.w-7\/12{
+  width: 58.333333%;
+}
+
+.w-4\/12{
+  width: 33.333333%;
+}
+
+.max-w-sm{
+  max-width: 24rem;
+}
+
+.max-w-xs{
+  max-width: 20rem;
+}
+
 .flex-col{
   flex-direction: column;
 }
 
 .flex-wrap{
   flex-wrap: wrap;
+}
+
+.items-start{
+  align-items: flex-start;
 }
 
 .items-center{
@@ -788,6 +825,31 @@ video {
   padding-bottom: 2rem;
 }
 
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .pb-14{
   padding-bottom: 3.5rem;
 }
@@ -798,6 +860,10 @@ video {
 
 .pt-6{
   padding-top: 1.5rem;
+}
+
+.pb-8{
+  padding-bottom: 2rem;
 }
 
 .text-left{
@@ -816,6 +882,16 @@ video {
 .text-7xl{
   font-size: 4.5rem;
   line-height: 1;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .uppercase{
@@ -869,14 +945,233 @@ video {
   font-family: "Orbitron", sans-serif;
 }
 
+@media (min-width: 640px){
+  .sm\:flex{
+    display: flex;
+  }
+
+  .sm\:max-w-sm{
+    max-width: 24rem;
+  }
+
+  .sm\:max-w-xs{
+    max-width: 20rem;
+  }
+
+  .sm\:justify-center{
+    justify-content: center;
+  }
+}
+
 @media (min-width: 768px){
   .md\:mx-40{
     margin-left: 10rem;
     margin-right: 10rem;
   }
 
+  .md\:mx-20{
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+
+  .md\:my-0{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .md\:mx-6{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .md\:mx-10{
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .md\:mt-24{
+    margin-top: 6rem;
+  }
+
+  .md\:mt-14{
+    margin-top: 3.5rem;
+  }
+
+  .md\:ml-20{
+    margin-left: 5rem;
+  }
+
+  .md\:block{
+    display: block;
+  }
+
+  .md\:flex{
+    display: flex;
+  }
+
+  .md\:h-2{
+    height: 0.5rem;
+  }
+
+  .md\:w-11\/12{
+    width: 91.666667%;
+  }
+
+  .md\:w-6\/12{
+    width: 50%;
+  }
+
+  .md\:w-5\/12{
+    width: 41.666667%;
+  }
+
+  .md\:w-7\/12{
+    width: 58.333333%;
+  }
+
+  .md\:w-8\/12{
+    width: 66.666667%;
+  }
+
+  .md\:w-9\/12{
+    width: 75%;
+  }
+
+  .md\:w-4\/12{
+    width: 33.333333%;
+  }
+
+  .md\:max-w-none{
+    max-width: none;
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
+  .md\:flex-col{
+    flex-direction: column;
+  }
+
+  .md\:justify-center{
+    justify-content: center;
+  }
+
+  .md\:py-6{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .md\:py-7{
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .md\:py-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .md\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .md\:px-4{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .md\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .md\:pb-14{
+    padding-bottom: 3.5rem;
+  }
+
+  .md\:pb-8{
+    padding-bottom: 2rem;
+  }
+
+  .md\:text-left{
+    text-align: left;
+  }
+
   .md\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-2xl{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:mx-40{
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
+  .lg\:mt-32{
+    margin-top: 8rem;
+  }
+
+  .lg\:mt-24{
+    margin-top: 6rem;
+  }
+
+  .lg\:ml-32{
+    margin-left: 8rem;
+  }
+
+  .lg\:w-9\/12{
+    width: 75%;
+  }
+
+  .lg\:w-10\/12{
+    width: 83.333333%;
+  }
+
+  .lg\:w-3\/12{
+    width: 25%;
+  }
+
+  .lg\:w-4\/12{
+    width: 33.333333%;
+  }
+
+  .lg\:w-5\/12{
+    width: 41.666667%;
+  }
+
+  .lg\:w-7\/12{
+    width: 58.333333%;
+  }
+
+  .lg\:w-8\/12{
+    width: 66.666667%;
+  }
+
+  .lg\:py-8{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .lg\:pb-14{
+    padding-bottom: 3.5rem;
+  }
+
+  .lg\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
   }
 }

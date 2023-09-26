@@ -3,13 +3,14 @@ import { ethers } from 'ethers';
 import Hero from './Hero';
 import Hero2 from './Hero2';
 import Hero3 from './Hero3';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import artifacts from './Zakeriya.json';
 const contractAddress = "0x6a2549b617B00C38b60A87CE0749e91f93fA8d75";
-const uri = "https://bafkreib72rzv5buzcpdkipqtihxsn5vk5joyppowj5t2pm2oswffxgnpki.ipfs.w3s.link/?filename=metadata.json"
+// const uri = "https://bafkreib72rzv5buzcpdkipqtihxsn5vk5joyppowj5t2pm2oswffxgnpki.ipfs.w3s.link/?filename=metadata.json"
 
 function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, contract: null, signer: null });
+  const [currentTokenId, setCurrentTokenId] = useState(0);
 
   const ini = async () => {
     try {
@@ -26,6 +27,10 @@ function App() {
         console.log(provider);
         const signer = await provider.getSigner();
         const contract = new ethers.Contract(contractAddress, artifacts.abi, signer);
+        await contract.on('MetadataUpdate', (res) => {
+          console.log('New Token Minted at id : ', res, 'and the contract address : ', contract.target);
+          setCurrentTokenId(ethers.toNumber(res));
+        })
         setWeb3Api({ provider, contract, signer });
       } else {
         console.log('meta not installed');
@@ -35,17 +40,16 @@ function App() {
       console.error(e);
     }
   }
-  // useEffect(() => {
+  useEffect(() => {
+    console.log('Token minted successfully at id :', currentTokenId);
+  }, [currentTokenId]);
 
-  //   ini();
-  // }, []);
-
-  const mint = async () => {
+  const mint = async ({ address, uri }) => {
     try {
-      console.log(web3Api.signer.address);
-      const res = await web3Api.contract.minNft(web3Api.signer.address, uri);
+      console.log(address);
+      const res = await web3Api.contract.minNft(address, uri);
       await res.wait();
-      console.log('minted on token id : ', res, 'at contract address : ', web3Api.contract);
+      console.log('minted at contract address : ', web3Api.contract);
     } catch (e) {
       console.error(e);
     }
@@ -59,7 +63,7 @@ function App() {
       {/* <button onClick={() => { mint() }}>Submit</button> */}
       <Hero web3Api={web3Api} setWeb3Api={setWeb3Api} ini={ini} />
       <Hero2 />
-      <Hero3 />
+      <Hero3 mint={mint} web3Api={web3Api} />
     </div>
   );
 }

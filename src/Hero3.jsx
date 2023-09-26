@@ -5,49 +5,57 @@ import three from './pics/portraits/3.png';
 import four from './pics/portraits/4.png';
 import five from './pics/portraits/5.png';
 import six from './pics/portraits/6.png';
+import uris from './meta/allUri.json';
 
-const Hero3 = () => {
+const Hero3 = ({ web3Api, mint }) => {
     const all = [
         {
             name: "ZKY's Ethereal Elegance",
             link: one,
-            metadata: null
+            uri: uris.one
         },
         {
             name: "ZKY's AI Mirage",
             link: two,
-            metadata: null
+            uri: uris.two
         },
         {
             name: "ZKY's Code Canvas",
             link: three,
-            metadata: null
+            uri: uris.three
         },
         {
             name: "The Cybernetic ZKY",
             link: four,
-            metadata: null
+            uri: uris.four
         },
         {
             name: "ZKY's Pixel Persona",
             link: five,
-            metadata: null
+            uri: uris.five
         },
         {
             name: "Synthetic ZKY Symphony",
             link: six,
-            metadata: null
+            uri: uris.six
         },
     ]
+    const handleMint = async (uri) => {
+        if (web3Api?.signer) {
+            await mint({ address: web3Api.signer.address, uri });
+        } else {
+            console.log('connect metamask first');
+        }
+    }
 
     return (
         <div className='min-w-screen min-h-screen flex justify-center items-center color_primary'>
-            <div className='w-9/12 my-10 flex flex-wrap justify-between items-center'>
+            <div className='lg:w-10/12 md:w-11/12 w-full my-10 flex flex-wrap justify-center items-center'>
                 {
-                    all.map(item => {
-                        return <div className='w-84 flex my-6 flex-col items-center'>
-                            <img src={item.link} className='w-9/12 object-fill' alt="" />
-                            <button className='w-9/12 mt-3 bg-white py-8 capitalize font_heading text_secondry'>{item.name}</button>
+                    all.map((item, id) => {
+                        return <div key={id} className='lg:w-4/12 md:w-6/12 w-11/12 flex my-6 flex-col items-center'>
+                            <img src={item.link} className='w-11/12 max-w-xs object-fill' alt="" />
+                            <button onClick={() => { handleMint(item.uri) }} className='w-10/12 max-w-xs mt-3 bg-white lg:py-8 md:py-7 py-6 capitalize font_heading text_secondry'>{item.name}</button>
                         </div>
                     })
                 }
