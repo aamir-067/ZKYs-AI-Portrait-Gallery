@@ -2,15 +2,16 @@ import React from 'react'
 import heroPic from './pics/hero.png';
 
 
-const Hero = () => {
-    const connect = true;
+const Hero = ({ web3Api, setWeb3Api, ini }) => {
     return (
         <div className='min-w-screen color_primary'>
             <nav className='h-24 flex justify-between items-center mx-5 md:mx-40'>
                 <h2 className='font_heading text-2xl tracking-wider text_secondry'>ZKY</h2>
                 <div className='flex gap-8 items-center'>
-                    {connect ? <p className='font_regular text_secondry'>0x000...00000</p> : <></>}
-                    <button className='btn_primary text_secondry'>{connect ? 'logout' : 'wallet connect'}</button>
+                    {web3Api?.signer ? <p className='font_regular text_secondry'>{web3Api.signer.address}</p> :
+                        <button onClick={() => { ini() }} className='btn_primary text_secondry'>wallet connect</button>}
+                    {web3Api?.signer ? <button onClick={() => { setWeb3Api({ provider: null, contract: null, signer: null }) }} className='btn_primary text_secondry'>logout</button> : <></>}
+                    {/* <button className='btn_primary text_secondry'>wallet connect</button> */}
                 </div>
             </nav>
             <section className='flex justify-around w-full h-8/12'>
@@ -23,7 +24,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-5/12'>
+                <div className='w-5/12 mb-8'>
                     <img className='w-full object-cover' src={heroPic} class="" alt="" />
                 </div>
             </section>
