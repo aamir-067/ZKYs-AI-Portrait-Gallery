@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.text_secondry {
+	color: #9d5a4d;
+}
+.color_secodry {
+	background-color: #9d5a4d;
+}
+.text_primary {
+	color: #e6dad1;
+}
+.color_primary {
+	background-color: #e6dad1;
+}
+.btn_primary {
+	@apply px-6 py-2 rounded-full tracking-wide uppercase;
+	background-color: #f6f1ee;
+}
+.font_regular {
+	font-family: "Poppins", sans-serif;
+}
+.font_heading {
+	font-family: "Orbitron", sans-serif;
+}
