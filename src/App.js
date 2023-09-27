@@ -1,4 +1,6 @@
 import './App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ethers } from 'ethers';
 import Hero from './Hero';
 import Hero2 from './Hero2';
@@ -49,6 +51,16 @@ function App() {
         // for next time so that i will connect it automatically.
         Cookies.set('isOnline', JSON.stringify({ value: true }), { expires: 1 / 24 });
       } else {
+        toast.error('Metamask connection failed', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         console.error('meta not installed');
       }
 
@@ -76,6 +88,16 @@ function App() {
       console.log(address);
       const res = await web3Api.contract.minNft(address, uri);
       await res.wait();
+      toast.success('NFT minted successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       const mytoken = await getCurrentTokenId({ contract: web3Api.contract });
       setMyToken(mytoken);
     } catch (e) {
@@ -92,6 +114,19 @@ function App() {
       <Hero web3Api={web3Api} getTokens={getCurrentTokenId} setWeb3Api={setWeb3Api} ini={ini} />
       <Hero2 totalTokens={totalTokens} myToken={myToken} contractAddress={contractAddress} />
       <Hero3 mint={mint} web3Api={web3Api} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ToastContainer />
     </div>
   );
 }
