@@ -14,7 +14,7 @@ const Hero2 = ({ totalTokens }) => {
                     <div className='w-full md:px-6'>
                         <h2 className='text-center md:text-left px-6 my-6 text-2xl font_heading uppercase text_primary'>here is a sneak peak</h2>
                         <p className='text-left font_regular px-6 text_primary tracking-wide'>Welcome to our extraordinary NFT experience, a portal where you're invited to embark on an enchanting journey into the realm of AI-generated artistry. Here, you're presented with a rare opportunity to claim ownership of an exquisite masterpiece, a digital marvel crafted in the image of our cherished Zakeriya. Simply click the button below, and you'll take a profound step towards possessing an exclusive work of digital art that captures the very soul and essence of Zakeriya in a manner unparalleled and previously unexplored.</p>
-                        {totalTokens && <p className='text-center font-bold text-2xl px-6 my-20 text_primary tracking-wider'> {totalTokens} NFTs MINTED</p>}
+                        {totalTokens > 0 ? <p className='text-center font-bold text-2xl px-6 my-20 text_primary tracking-wider'> {totalTokens} NFTs MINTED</p> : <></>}
                     </div>
                 </div>
 

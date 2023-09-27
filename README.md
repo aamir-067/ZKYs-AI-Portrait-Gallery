@@ -1,3 +1,7 @@
+# About the ZKY's AI Portrait Gallery
+
+-> Visit the site by [clicking here](https://zkyaiportraits.netlify.app/) to mint a free NFT.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
