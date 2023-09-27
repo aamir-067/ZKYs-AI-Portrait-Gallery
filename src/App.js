@@ -4,6 +4,7 @@ import Hero from './Hero';
 import Hero2 from './Hero2';
 import Hero3 from './Hero3';
 import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import artifacts from './Zakeriya.json';
 const contractAddress = "0x7B7fD2633F107b52d5FBDEC76596bDA1F23e5f26";
 // const uri = "https://bafkreib72rzv5buzcpdkipqtihxsn5vk5joyppowj5t2pm2oswffxgnpki.ipfs.w3s.link/?filename=metadata.json"
@@ -45,6 +46,8 @@ function App() {
           setTotalTokens(ethers.toNumber(res));
         })
         setWeb3Api({ provider, contract, signer });
+        // for next time so that i will connect it automatically.
+        Cookies.set('isOnline', JSON.stringify({ value: true }), { expires: 1 / 24 });
       } else {
         console.error('meta not installed');
       }
@@ -53,9 +56,19 @@ function App() {
       console.error(e);
     }
   }
-  // useEffect(() => {
-  //   console.log('Token minted successfully at id :', currentTokenId);
-  // }, [currentTokenId]);
+  useEffect(() => {
+    const initialize = async () => {
+      await ini();
+    }
+    const res = Cookies.get('isOnline');
+    if (res) {
+      const isOnline = JSON.parse(Cookies.get('isOnline'));
+      // console.log('cookies data ==>', isOnline);
+      isOnline.value && initialize();
+    }
+
+
+  }, []);
 
 
 

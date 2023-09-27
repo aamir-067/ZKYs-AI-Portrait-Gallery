@@ -1,4 +1,5 @@
 import React from 'react'
+import Cookies from 'js-cookie';
 import heroPic from './pics/hero.png';
 
 
@@ -19,7 +20,10 @@ const Hero = ({ web3Api, setWeb3Api, ini }) => {
                         <button onClick={async () => {
                             await ini();
                         }} className='btn_primary text_secondry'>wallet connect</button>}
-                    {web3Api?.signer ? <button onClick={() => { setWeb3Api({ provider: null, contract: null, signer: null }) }} className='btn_primary text_secondry'>logout</button> : <></>}
+                    {web3Api?.signer ? <button onClick={() => {
+                        setWeb3Api({ provider: null, contract: null, signer: null })
+                        Cookies.set('isOnline', JSON.stringify({ value: false }), { expires: 1 / 24 });
+                    }} className='btn_primary text_secondry'>logout</button> : <></>}
                 </div>
             </nav>
             <section className='flex flex-col md:flex-row items-center justify-around w-full h-8/12'>
