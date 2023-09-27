@@ -2,7 +2,14 @@ import React from 'react'
 import heroPic from './pics/hero.png';
 
 
-const Hero = ({ web3Api, setWeb3Api, ini, getTokens }) => {
+const Hero = ({ web3Api, setWeb3Api, ini }) => {
+    const scrollToSection = () => {
+        const section = document.getElementById('allNfts');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className='min-w-screen color_primary'>
             <nav className='h-24 flex justify-between items-center mx-5 md:mx-20 lg:mx-40'>
@@ -21,7 +28,7 @@ const Hero = ({ web3Api, setWeb3Api, ini, getTokens }) => {
                         <h2 className='text-center md:text-5xl text-3xl lg:text-7xl font_heading uppercase text_secondry'>mint now</h2>
                         <p className='text-center pt-6 md:px-8 md:pb-8 lg:pb-14 font_regular text_secondry '>Embark on a captivating journey and experience the extraordinary prowess of artificial intelligence as it unveils the world of art in a way you've never witnessed before.</p>
                         <div className='flex justify-center'>
-                            <button className='btn_primary my-8 md:my-0 text_secondry'>mint zky</button>
+                            <button onClick={scrollToSection} className='btn_primary my-8 md:my-0 text_secondry'>mint zky</button>
                         </div>
                     </div>
                 </div>

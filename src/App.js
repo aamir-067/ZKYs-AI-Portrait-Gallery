@@ -10,16 +10,16 @@ const contractAddress = "0x7B7fD2633F107b52d5FBDEC76596bDA1F23e5f26";
 
 function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, contract: null, signer: null });
-  const [currentTokenId, setCurrentTokenId] = useState(0);
   const [totalTokens, setTotalTokens] = useState(0);
+  const [myToken, setMyToken] = useState(0);
 
 
   const getCurrentTokenId = async ({ contract }) => {
     try {
-      console.log(contract);
+      // console.log(contract);
       const res = await contract.current();
-      console.log('total tokens : ', res)
-      setTotalTokens(Number(res));
+      // console.log('total tokens : ', res)
+      return ethers.toNumber(res);
     } catch (e) {
       console.error(e);
     }
@@ -34,28 +34,28 @@ function App() {
         window.ethereum.on('accountsChanged', () => {
           ini();
         });
-        console.log(window.ethereum);
+        // console.log(window.ethereum);
         const provider = await new ethers.BrowserProvider(window.ethereum);
-        console.log(provider);
+        // console.log(provider);
         const signer = await provider.getSigner();
         const contract = new ethers.Contract(contractAddress, artifacts.abi, signer);
-        await getCurrentTokenId({ contract });
+        let temp = await getCurrentTokenId({ contract });
+        setTotalTokens(ethers.toNumber(temp));
         await contract.on('MetadataUpdate', (res) => {
-          console.log('New Token Minted at id : ', res, 'and the contract address : ', contract.target);
-          setCurrentTokenId(ethers.toNumber(res));
+          setTotalTokens(ethers.toNumber(res));
         })
         setWeb3Api({ provider, contract, signer });
       } else {
-        console.log('meta not installed');
+        console.error('meta not installed');
       }
 
     } catch (e) {
       console.error(e);
     }
   }
-  useEffect(() => {
-    console.log('Token minted successfully at id :', currentTokenId);
-  }, [currentTokenId]);
+  // useEffect(() => {
+  //   console.log('Token minted successfully at id :', currentTokenId);
+  // }, [currentTokenId]);
 
 
 
@@ -64,8 +64,8 @@ function App() {
       console.log(address);
       const res = await web3Api.contract.minNft(address, uri);
       await res.wait();
-      getCurrentTokenId({ contract: web3Api.contract });
-      console.log('minted at contract address : ', web3Api.contract);
+      const mytoken = await getCurrentTokenId({ contract: web3Api.contract });
+      setMyToken(mytoken);
     } catch (e) {
       console.error(e);
     }
@@ -78,7 +78,7 @@ function App() {
     <div className="min-w-screem">
       {/* <button onClick={() => { mint() }}>Submit</button> */}
       <Hero web3Api={web3Api} getTokens={getCurrentTokenId} setWeb3Api={setWeb3Api} ini={ini} />
-      <Hero2 totalTokens={totalTokens} />
+      <Hero2 totalTokens={totalTokens} myToken={myToken} contractAddress={contractAddress} />
       <Hero3 mint={mint} web3Api={web3Api} />
     </div>
   );

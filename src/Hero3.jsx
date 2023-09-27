@@ -49,7 +49,7 @@ const Hero3 = ({ web3Api, mint }) => {
     }
 
     return (
-        <div className='min-w-screen min-h-screen flex justify-center items-center color_primary'>
+        <div id='allNfts' className='min-w-screen min-h-screen flex justify-center items-center color_primary'>
             <div className='lg:w-10/12 md:w-11/12 w-full my-10 flex flex-wrap justify-center items-center'>
                 {
                     all.map((item, id) => {
