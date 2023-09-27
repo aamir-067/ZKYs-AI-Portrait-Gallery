@@ -56,6 +56,7 @@ function App() {
       console.error(e);
     }
   }
+
   useEffect(() => {
     const initialize = async () => {
       await ini();
@@ -63,11 +64,9 @@ function App() {
     const res = Cookies.get('isOnline');
     if (res) {
       const isOnline = JSON.parse(Cookies.get('isOnline'));
-      // console.log('cookies data ==>', isOnline);
       isOnline.value && initialize();
     }
-
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
