@@ -2,14 +2,16 @@ import React from 'react'
 import heroPic from './pics/hero.png';
 
 
-const Hero = ({ web3Api, setWeb3Api, ini }) => {
+const Hero = ({ web3Api, setWeb3Api, ini, getTokens }) => {
     return (
         <div className='min-w-screen color_primary'>
             <nav className='h-24 flex justify-between items-center mx-5 md:mx-20 lg:mx-40'>
                 <h2 className='font_heading md:text-2xl text-xl  tracking-wider text_secondry'>ZKY</h2>
-                <div className='flex gap-8 items-center'>
-                    {web3Api?.signer ? <p className='font_regular text_secondry'>{web3Api.signer.address}</p> :
-                        <button onClick={() => { ini() }} className='btn_primary text_secondry'>wallet connect</button>}
+                <div className='flex md:gap-8 gap-4 items-center'>
+                    {web3Api?.signer ? <p className='font_regular text_secondry'>{`${[...web3Api.signer.address].slice(0, 6).join("")}....${[...web3Api.signer.address].slice(37, 42).join("")}`}</p> :
+                        <button onClick={async () => {
+                            await ini();
+                        }} className='btn_primary text_secondry'>wallet connect</button>}
                     {web3Api?.signer ? <button onClick={() => { setWeb3Api({ provider: null, contract: null, signer: null }) }} className='btn_primary text_secondry'>logout</button> : <></>}
                 </div>
             </nav>

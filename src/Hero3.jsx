@@ -54,7 +54,7 @@ const Hero3 = ({ web3Api, mint }) => {
                 {
                     all.map((item, id) => {
                         return <div key={id} className='lg:w-4/12 md:w-6/12 w-11/12 flex my-6 flex-col items-center'>
-                            <img src={item.link} className='w-11/12 max-w-xs object-fill' alt="" />
+                            <img src={item.link} className='w-10/12 max-w-xs object-fill' alt="" />
                             <button onClick={() => { handleMint(item.uri) }} className='w-10/12 max-w-xs mt-3 bg-white lg:py-8 md:py-7 py-6 capitalize font_heading text_secondry'>{item.name}</button>
                         </div>
                     })
